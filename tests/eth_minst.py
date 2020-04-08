@@ -24,6 +24,19 @@ from bindsnet.analysis.plotting import (
     plot_voltages,
 )
 
+ARGS_HELPER = {}
+def arg_maker(args_dict):
+    return """
+    parser = argparse.ArgumentParser()
+    for each in ARGS_HELPER.keys():
+        parser.add_argument(f'--{each}', **ARGS_HELPER[each])
+    args = parser.parse_args()
+    for each in ARGS_HELPER.keys():
+        exec(f"{each} = args.{each}")
+    """
+
+    
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed"             , type = int    , default = 0)
@@ -40,7 +53,6 @@ parser.add_argument("--intensity"        , type = float  , default = 128)
 parser.add_argument("--progress_interval", type = int    , default = 10)
 parser.add_argument("--update_interval"  , type = int    , default = 250)
 parser.add_argument("--train"            , dest = "train", action  = "store_true")
-parser.add_argument("--test"             , dest = "train", action  = "store_false")
 parser.add_argument("--plot"             , dest = "plot" , action  = "store_true")
 parser.add_argument("--gpu"              , dest = "gpu"  , action  = "store_true")
 

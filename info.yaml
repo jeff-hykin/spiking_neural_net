@@ -3,8 +3,11 @@
     name: Your Project Name Here
     description: Describe your project here
     
+    python:   /usr/local/bin/python3
     (commands):
-        run: echo 'no run command written yet'
+        test_gym: python "./tests/ai_gym.py"
+        test_spike: python "./tests/eth_minst.py"
+        test_spike1: /usr/local/bin/python3 "./tests/eth_minst.py"
         (setup): ruby scripts/setup.rb
     
     (paths):
